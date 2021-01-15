@@ -23,7 +23,7 @@ drutils.o:drutils.c HDMstruct.h
 	gcc -c drutils.c 
 modutils.o:modutils.c HDMstruct.h
 	gcc -c modutils.c 
-get_additional_hwinfo.o:get_additional_hwinfo.c get_additional_hwinfo.hardware_driver
+get_additional_hwinfo.o:get_additional_hwinfo.c get_additional_hwinfo.h
 	gcc -c get_additional_hwinfo.c
 
 .PHONY:clean
