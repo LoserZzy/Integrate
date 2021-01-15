@@ -1,13 +1,13 @@
 
 
-objects=universal.o utils.o sysutils.o hwutils.o drutils.o modutils.o collect.o FWCConnect.o
+objects=universal.o utils.o sysutils.o hwutils.o drutils.o modutils.o collect.o FWCConnect.o get_additional_hwinfo.o
 
 hardware_driver:$(objects)
 	gcc -o hardware_driver $(objects)
 	rm $(objects)
 	#./hardware_driver
 
-collect.o:collect.c HDMstruct.h FWCConnect.h SysInfo.h
+collect.o:collect.c HDMstruct.h FWCConnect.h SysInfo.h get_additional_hwinfo.h
 	gcc -c collect.c
 utils.o:utils.c SysInfo.h
 	gcc -c utils.c
@@ -23,6 +23,8 @@ drutils.o:drutils.c HDMstruct.h
 	gcc -c drutils.c 
 modutils.o:modutils.c HDMstruct.h
 	gcc -c modutils.c 
+get_additional_hwinfo.o:get_additional_hwinfo.c get_additional_hwinfo.hardware_driver
+	gcc -c get_additional_hwinfo.c
 
 .PHONY:clean
 clean:
