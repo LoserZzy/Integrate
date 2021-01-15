@@ -1,0 +1,9 @@
+[
+{"fs_type":"udev","mount_path":"/dev","available":905996,"total_size":906000,"used_size":4,"block_size":4096},
+{"fs_type":"tmpfs","mount_path":"/run","available":179488,"total_size":187752,"used_size":8264,"block_size":4096},
+{"fs_type":"/dev/vda1","mount_path":"/","available":23179540,"total_size":51539404,"used_size":28359864,"block_size":4096},
+{"fs_type":"tmpfs","mount_path":"/dev/shm","available":938712,"total_size":938752,"used_size":40,"block_size":4096},
+{"fs_type":"tmpfs","mount_path":"/run/lock","available":5120,"total_size":5120,"used_size":0,"block_size":4096},
+{"fs_type":"tmpfs","mount_path":"/sys/fs/cgroup","available":938752,"total_size":938752,"used_size":0,"block_size":4096},
+{"fs_type":"tmpfs","mount_path":"/run/user/500","available":187748,"total_size":187748,"used_size":0,"block_size":4096}
+]

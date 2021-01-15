@@ -57,6 +57,7 @@ typedef struct NetUnit {
     char product[100];
     char vendor[100];
     char serial[30];
+    char ipsetting[10]; //ip动态还是静态分配
 }NetUnit;
 
 typedef struct NetInfo {
