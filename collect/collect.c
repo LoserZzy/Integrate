@@ -2,6 +2,7 @@
 // #include "FWCConnect.h"
 #include "SysInfo.h"
 #include "get_additional_hwinfo.h"
+#include "settings.h"
 #include <stdio.h>
 
 int main() {

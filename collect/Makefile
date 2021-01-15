@@ -7,11 +7,11 @@ hardware_driver:$(objects)
 	rm $(objects)
 	#./hardware_driver
 
-collect.o:collect.c HDMstruct.h FWCConnect.h SysInfo.h get_additional_hwinfo.h
+collect.o:collect.c HDMstruct.h FWCConnect.h SysInfo.h get_additional_hwinfo.h settings.h
 	gcc -c collect.c
-utils.o:utils.c SysInfo.h
+utils.o:utils.c SysInfo.h settings.h
 	gcc -c utils.c
-sysutils.o:sysutils.c SysInfo.h
+sysutils.o:sysutils.c SysInfo.h settings.h
 	gcc -c sysutils.c
 FWCConnect.o:FWCConnect.c FWCConnect.h
 	gcc -c FWCConnect.c
@@ -23,7 +23,7 @@ drutils.o:drutils.c HDMstruct.h
 	gcc -c drutils.c 
 modutils.o:modutils.c HDMstruct.h
 	gcc -c modutils.c 
-get_additional_hwinfo.o:get_additional_hwinfo.c get_additional_hwinfo.h
+get_additional_hwinfo.o:get_additional_hwinfo.c get_additional_hwinfo.h settings.h
 	gcc -c get_additional_hwinfo.c
 
 .PHONY:clean

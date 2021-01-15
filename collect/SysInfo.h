@@ -5,7 +5,7 @@
 #ifndef SYS_INFO_SYSINFO_H
 #define SYS_INFO_SYSINFO_H
 
-#define SAVE_DIR_PATH "./result/"
+// #define SAVE_DIR_PATH "./result/"
 #define SAVE_SYSINFO_PATH "Sys_info.txt"
 #define SAVE_CPU_NAME "cpu_info.txt"
 #define SAVE_NET_NAME "net_info.txt"
