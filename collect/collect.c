@@ -1,8 +1,8 @@
-#include"HDMstruct.h"
-// #include"FWCConnect.h"
-#include"SysInfo.h"
+#include "HDMstruct.h"
+// #include "FWCConnect.h"
+#include "SysInfo.h"
 #include "get_additional_hwinfo.h"
-#include<stdio.h>
+#include <stdio.h>
 
 int main() {
    
@@ -14,46 +14,46 @@ int main() {
     // FWC_progress_report(sock, 5, 0, report_msg);
 
     // 开始获取CPU信息，进度报告5
-    cpu_info("SAVE_DIR_PATH");
+    cpu_info(SAVE_DIR_PATH);
     sprintf(report_msg, "complete cpu_information checking");
     // FWC_progress_report(sock, 6, 5, report_msg);
 
 
     // 开始获取memory信息，进度报告10
-    mem_info("SAVE_DIR_PATH");
+    mem_info(SAVE_DIR_PATH);
     sprintf(report_msg, "complete memory_information checking");
     // FWC_progress_report(sock, 6, 10, report_msg);
 
 
     // 开始获取硬盘信息，进度报告15
-    disk_info("SAVE_DIR_PATH");
+    disk_info(SAVE_DIR_PATH);
     sprintf(report_msg, "complete disk_information checking");
     // FWC_progress_report(sock, 6, 15, report_msg);
 
 
     // 开始获取网卡信息，进度报告20
-    net_info("SAVE_DIR_PATH");
+    net_info(SAVE_DIR_PATH);
     sprintf(report_msg, "complete netcard_infomation checking");
     // FWC_progress_report(sock, 6, 20, report_msg);
 
 
     // 开始获取BIOS信息，进度报告25
-    bios_info("SAVE_DIR_PATH");
+    bios_info(SAVE_DIR_PATH);
     sprintf(report_msg, "complete BIOS_information checking");
     // FWC_progress_report(sock, 6, 25, report_msg);
 
     // 开始获取硬件信息，进度报告40
-    hardware("SAVE_DIR_PATH");
+    hardware(SAVE_DIR_PATH);
     sprintf(report_msg, "complete hardware checking");
     // FWC_progress_report(sock, 6, 40, report_msg);
 
     // 开始获取驱动信息，进度报告70
-    driver("SAVE_DIR_PATH");
+    driver(SAVE_DIR_PATH);
     sprintf(report_msg, "complete driver checking");
     // FWC_progress_report(sock, 6, 70, report_msg);
 
     // 开始获取模块信息，进度报告80
-    module("SAVE_DIR_PATH");
+    module(SAVE_DIR_PATH);
     sprintf(report_msg, "complete module checking");
     // FWC_progress_report(sock, 6, 80, report_msg);
 
