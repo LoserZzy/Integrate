@@ -148,7 +148,7 @@ def additional_ana(checker_id):
     ipdata = Get_Raw_Data(username, password, database, checker_id, 'Rawinfo',['Ipinfo'])
 
     for datas in raw_data:
-        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
+        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:') # 数据获取，需要根据具体情况调整
         if len(cpu_raw) > 1:
             cpu_raw = cpu_raw[1:]
         for data in cpu_raw:
