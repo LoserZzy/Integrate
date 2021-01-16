@@ -9,15 +9,15 @@ void get_additional_hwinfo()
     sprintf(doit,"%s%s%s","./lshw -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CPUINFO);
     system(doit);
 
-    sprintf(doit,"%s%s%s","./lshw -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_NETINFO);
+    sprintf(doit,"%s%s%s","./lshw -class network -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_NETINFO);
     system(doit);
 
-    sprintf(doit,"%s%s%s","./lshw -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_MEMINFO);
+    sprintf(doit,"%s%s%s","./lshw -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_MEMINFO);
     system(doit);
 
-    sprintf(doit,"%s%s%s","./lshw -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CDISKINFO);
+    sprintf(doit,"%s%s%s","./lshw -class disk -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CDISKINFO);
     system(doit);
 
-    sprintf(doit,"%s%s%s","./lshw -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
+    sprintf(doit,"%s%s%s","./lshw -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
     system(doit);
 }

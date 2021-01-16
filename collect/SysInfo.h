@@ -51,13 +51,13 @@ typedef struct NetUnit {
     char broad_addr[16];
     char subnet_mask[16];
     struct NetUnit* next;
-    // // 后期获取
+    // 后期获取
     char physid[20];
     char description[100];  
     char product[100];
     char vendor[100];
     char serial[30];
-    char ipsetting[10]; //ip动态还是静态分配
+    // char ipsetting[10]; //ip动态还是静态分配
 }NetUnit;
 
 typedef struct NetInfo {
