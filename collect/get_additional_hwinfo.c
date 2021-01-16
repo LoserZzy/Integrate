@@ -1,7 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 #include "get_additional_hwinfo.h"
 #include "settings.h"
+
+char* Int2String(int num,char *str)//10进制 
+{
+    int i = 0;
+    if(num<0)
+    {
+        num = -num;
+        str[i++] = '-';
+    } 
+    do
+    {
+        str[i++] = num%10+48;
+        num /= 10;  
+    }while(num);
+    
+    str[i] = '\0';
+    int j = 0;
+    if(str[0]=='-')
+    {
+        j = 1;
+        ++i;
+    }
+    for(;j<i/2;j++)
+    {
+        str[j] = str[j] + str[i-1-j];
+        str[i-1-j] = str[j] - str[i-1-j];
+        str[j] = str[j] - str[i-1-j];
+    } 
+    return str;
+}
 
 void get_additional_hwinfo()
 {
@@ -20,4 +52,31 @@ void get_additional_hwinfo()
 
     sprintf(doit,"%s%s%s","./lshw -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
     system(doit);
+
+    system("ls /etc/netplan > lsmsg");
+    FILE *fp=fopen("lsmsg","r");
+    char data[100];
+    int num = 0;
+    char number[10];
+    while(!feof(fp))
+    {
+        fscanf(fp,"%s",data);
+        if (strlen(data) != 0){
+            num += 1;
+            char doit[50];
+            Int2String(num, number);
+            sprintf(doit,"%s%s%s%s%s%s","cp /etc/netplan/", data, " ", SAVE_ADDITIONAL_INFO_DIR_PATH, "ipinfo", number);
+            memset(data, 0, 100);
+            system(doit);
+        }
+    }
+    fclose(fp);
+    
+    char path[50];
+    sprintf(path,"%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH, "ipinfo_num");
+    fp=fopen(path,"w");
+    fputs(number, fp);
+    fclose(fp);
+
+    system("rm lsmsg");
 }
