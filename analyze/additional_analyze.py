@@ -145,7 +145,8 @@ def ana_bios(bios_raw_info, checker_id):
 def additional_ana(checker_id):
     # 数据获取，需要根据具体情况调整
     raw_data = Get_Raw_Data(username, password, database, checker_id, 'Rawinfo',['Cpuinfo', 'Networkinfo', 'Memoryinfo', 'Diskinfo', 'Businfo'])
-    
+    ipdata = Get_Raw_Data(username, password, database, checker_id, 'Rawinfo',['Ipinfo'])
+
     for datas in raw_data:
         cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
         if len(cpu_raw) > 1:
@@ -161,6 +162,17 @@ def additional_ana(checker_id):
             net_raw = net_raw[1:]
         for data in net_raw:
             netinfo = ana_net(data, checker_id)
+
+            id = data.split('logicalname:')
+            if len(id)>1:
+                id = id[1].split('\n')[0]
+                for rawip in ipdata:
+                    if id in rawip['Ipinfo']:
+                        if "dhcp4: true" in rawip['Ipinfo']:
+                            netinfo[ipalloc] = 'Dynamic'
+                        elif "dhcp4: no" in rawip['Ipinfo'] or "dhcp4: false" in rawip['Ipinfo']:
+                            netinfo[ipalloc] = 'Static'
+
             # 数据上传,需要根据具体情况调整
             Upload_Raw_Data(username, password, database, 'hardwaredriver_sysnetinfo', [netinfo])
 
