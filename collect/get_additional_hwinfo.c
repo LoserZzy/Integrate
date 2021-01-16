@@ -42,11 +42,19 @@ void get_additional_hwinfo()
     char sys[10], lshw[10];
     fscanf(fp, "%s", sys);
     fclose(fp);
-    if (sys[0] == 'x' && sys[1] == '8' && sys[2] == '6'){
+    if (sys[0] == 'x' && sys[1] == '8' && sys[2] == '6'){ // 判断为x86
         char lshw_x86[10] = "./lshw_x86";
         for (int a = 0; a < 10; a += 1)
             lshw[a] = lshw_x86[a];
     }
+
+    // 针对多种架构留下的空
+    // else if (*****){ 
+    //     char lshw_x86[10] = "./lshw_*****";
+    //     for (int a = 0; a < 10; a += 1)
+    //         lshw[a] = lshw_*****[a];
+    // }
+    
     system("rm sysinfo");
 
 
