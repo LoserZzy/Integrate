@@ -35,6 +35,34 @@ char* Int2String(int num,char *str)//10进制
     return str;
 }
 
+/*
+* 读取文件内容
+* path:文件路径
+* length:文件大小(out)
+* return:文件内容
+*/
+char * ReadFile(char * path, int *length)
+{
+	FILE * pfile;
+	char * data;
+ 
+	pfile = fopen(path, "rb");
+	if (pfile == NULL)
+	{
+		return NULL;
+	}
+	fseek(pfile, 0, SEEK_END);
+	*length = ftell(pfile);
+	data = (char *)malloc((*length + 1) * sizeof(char));
+	rewind(pfile);
+	*length = fread(data, 1, *length, pfile);
+	data[*length] = '\0';
+	fclose(pfile);
+	return data;
+}
+
+
+
 void get_additional_hwinfo()
 {
     system("arch > sysinfo");
@@ -50,30 +78,84 @@ void get_additional_hwinfo()
 
     // 针对多种架构留下的空
     // else if (*****){ 
-    //     char lshw_x86[10] = "./lshw_*****";
+    //     char lshw_*****[10] = "./lshw_*****";
     //     for (int a = 0; a < 10; a += 1)
     //         lshw[a] = lshw_*****[a];
     // }
     
     system("rm sysinfo");
 
-
+    char path[50];
+    char * buf;
+    int length;
     char doit[100];
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_INFO);
+    FILE *rfp=fopen(path,"w");
+    fclose(rfp);
+    rfp=fopen(path,"a+");
+    fputs("{\n", rfp);
+
+
+    // 采集cpu信息暂存于cpuinfo并最终存入allinfo中
     sprintf(doit, "%s%s%s%s", lshw, " -class cpu -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CPUINFO);
     system(doit);
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_CPUINFO);
+    buf = ReadFile(path, &length);
+    fputs("\"cpuinfo\":\"",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("\",\n\n",rfp);
+    sprintf(doit, "%s%s%s", "rm ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CPUINFO);
+    system(doit);
 
+    
+    // network
     sprintf(doit, "%s%s%s%s", lshw, " -class network -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_NETINFO);
     system(doit);
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_NETINFO);
+    buf = ReadFile(path, &length);
+    fputs("\"netinfo\":\"",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("\",\n\n",rfp);
+    sprintf(doit, "%s%s%s", "rm ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_NETINFO);
+    system(doit);
 
+
+    // memory
     sprintf(doit, "%s%s%s%s", lshw, " -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_MEMINFO);
     system(doit);
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_MEMINFO);
+    buf = ReadFile(path, &length);
+    fputs("\"meminfo\":\"",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("\",\n\n",rfp);
+    sprintf(doit, "%s%s%s", "rm ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_MEMINFO);
+    system(doit);
 
+
+    // disk
     sprintf(doit, "%s%s%s%s", lshw, " -class disk -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CDISKINFO);
     system(doit);
-
-    sprintf(doit, "%s%s%s%s", lshw, " -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_CDISKINFO);
+    buf = ReadFile(path, &length);
+    fputs("\"diskinfo\":\"",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("\",\n\n",rfp);
+    sprintf(doit, "%s%s%s", "rm ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_CDISKINFO);
     system(doit);
 
+    // bios
+    sprintf(doit, "%s%s%s%s", lshw, " -class memory -json > ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
+    system(doit);
+    sprintf(path, "%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH,SAVE_ADDITIONAL_BIOSINFO);
+    buf = ReadFile(path, &length);
+    fputs("\"biosinfo\":\"",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("\",\n\n",rfp);
+    sprintf(doit, "%s%s%s", "rm ", SAVE_ADDITIONAL_INFO_DIR_PATH, SAVE_ADDITIONAL_BIOSINFO);
+    system(doit);
+
+
+    // ip分配（动态\静态）
     system("ls /etc/netplan > lsmsg");
     fp=fopen("lsmsg","r");
     char data[100];
@@ -87,17 +169,35 @@ void get_additional_hwinfo()
             char doit[50];
             Int2String(num, number);
             sprintf(doit,"%s%s%s%s%s%s","cp /etc/netplan/", data, " ", SAVE_ADDITIONAL_INFO_DIR_PATH, "ipinfo", number);
+            system(doit);
             memset(data, 0, 100);
+
+            sprintf(path, "%s%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH, "ipinfo", number);
+            buf = ReadFile(path, &length);
+            char phrase[20];
+            sprintf(phrase, "%s%s%s", "\"ipinfo", number, "\":\"[\n");
+            fputs(phrase,rfp);
+            fwrite(buf, length, 1, rfp);
+            fputs("]\",\n\n",rfp);
+            sprintf(doit, "%s%s", "rm ", path);
             system(doit);
         }
     }
     fclose(fp);
     
-    char path[50];
     sprintf(path,"%s%s", SAVE_ADDITIONAL_INFO_DIR_PATH, "ipinfo_num");
     fp=fopen(path,"w");
     fputs(number, fp);
     fclose(fp);
+
+    buf = ReadFile(path, &length);
+    fputs("\"ipinfo_num\":\"[",rfp);
+    fwrite(buf, length, 1, rfp);
+    fputs("]\"\n\n}",rfp);
+    sprintf(doit, "%s%s", "rm ", path);
+    system(doit);
+    
+    fclose(rfp);
 
     system("rm lsmsg");
 }

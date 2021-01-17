@@ -145,7 +145,7 @@ def ana_bios(bios_raw_info, checker_id):
 def additional_ana(checker_id):
     # 数据获取，需要根据具体情况调整
     raw_data = Get_Raw_Data(username, password, database, checker_id, 'Rawinfo',['Cpuinfo', 'Networkinfo', 'Memoryinfo', 'Diskinfo', 'Businfo'])
-    ipdata = Get_Raw_Data(username, password, database, checker_id, 'Rawinfo',['Ipinfo'])
+    ipdata = Get_Raw_Data(username, password, database, checker_id, 'Ipinfo',['Ipinfo'])
 
     for datas in raw_data:
         cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:') # 数据获取，需要根据具体情况调整
@@ -157,7 +157,7 @@ def additional_ana(checker_id):
             Upload_Raw_Data(username, password, database, 'hardwaredriver_syscpuinfo', [cpuinfo])
 
     for datas in raw_data:
-        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
+        net_raw = datas['Networkinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
         if len(net_raw) > 1:
             net_raw = net_raw[1:]
         for data in net_raw:
@@ -169,15 +169,15 @@ def additional_ana(checker_id):
                 for rawip in ipdata:
                     if id in rawip['Ipinfo']:
                         if "dhcp4: true" in rawip['Ipinfo']:
-                            netinfo[ipalloc] = 'Dynamic'
+                            netinfo['ipalloc'] = 'Dynamic'
                         elif "dhcp4: no" in rawip['Ipinfo'] or "dhcp4: false" in rawip['Ipinfo']:
-                            netinfo[ipalloc] = 'Static'
+                            netinfo['ipalloc'] = 'Static'
 
             # 数据上传,需要根据具体情况调整
             Upload_Raw_Data(username, password, database, 'hardwaredriver_sysnetinfo', [netinfo])
 
     for datas in raw_data:
-        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
+        disk_raw = datas['Diskinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
         if len(disk_raw) > 1:
             disk_raw = disk_raw[1:]
         for data in disk_raw:
@@ -186,7 +186,7 @@ def additional_ana(checker_id):
             Upload_Raw_Data(username, password, database, 'hardwaredriver_sysdiskinfo_s', [diskinfo])
     
     for datas in raw_data:
-        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
+        mem_raw = datas['Memoryinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
         if len(mem_raw) > 1:
             mem_raw = mem_raw[1:]
         for data in mem_raw:
@@ -196,7 +196,7 @@ def additional_ana(checker_id):
                 Upload_Raw_Data(username, password, database, 'hardwaredriver_sysmeminfo_s', [meminfo])
     
     for datas in raw_data:
-        cpu_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
+        bios_raw = datas['Cpuinfo'].replace(' ', '').replace('\"', '').split('{\nid:')
         if len(bios_raw) > 1:
             bios_raw = bios_raw[1:]
         for data in bios_raw:

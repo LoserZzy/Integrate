@@ -6,6 +6,7 @@
 #define SAVE_ADDITIONAL_MEMINFO "memoryinfo"
 #define SAVE_ADDITIONAL_CDISKINFO "diskinfo"
 #define SAVE_ADDITIONAL_BIOSINFO "biosinfo"
+#define SAVE_ADDITIONAL_INFO "allinfo"
 
 void get_additional_hwinfo(void);
 

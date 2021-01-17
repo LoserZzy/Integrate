@@ -1,0 +1,318 @@
+{
+"cpuinfo":"[
+  {
+    "id" : "cpu",
+    "class" : "processor",
+    "claimed" : true,
+    "handle" : "DMI:0401",
+    "description" : "CPU",
+    "product" : "Intel(R) Xeon(R) CPU E5-26xx v4",
+    "vendor" : "Intel Corp.",
+    "physid" : "401",
+    "businfo" : "cpu@0",
+    "version" : "6.79.1",
+    "slot" : "CPU 1",
+    "units" : "Hz",
+    "size" : 2000000000,
+    "capacity" : 2000000000,
+    "width" : 64,
+    "configuration" : {
+      "microcode" : "1"
+    },
+    "capabilities" : {
+      "fpu" : "mathematical co-processor",
+      "fpu_exception" : "FPU exceptions reporting",
+      "wp" : true,
+      "vme" : "virtual mode extensions",
+      "de" : "debugging extensions",
+      "pse" : "page size extensions",
+      "tsc" : "time stamp counter",
+      "msr" : "model-specific registers",
+      "pae" : "4GB+ memory addressing (Physical Address Extension)",
+      "mce" : "machine check exceptions",
+      "cx8" : "compare and exchange 8-byte",
+      "apic" : "on-chip advanced programmable interrupt controller (APIC)",
+      "sep" : "fast system calls",
+      "mtrr" : "memory type range registers",
+      "pge" : "page global enable",
+      "mca" : "machine check architecture",
+      "cmov" : "conditional move instruction",
+      "pat" : "page attribute table",
+      "pse36" : "36-bit page size extensions",
+      "clflush" : true,
+      "mmx" : "multimedia extensions (MMX)",
+      "fxsr" : "fast floating point save/restore",
+      "sse" : "streaming SIMD extensions (SSE)",
+      "sse2" : "streaming SIMD extensions (SSE2)",
+      "ss" : "self-snoop",
+      "ht" : "HyperThreading",
+      "syscall" : "fast system calls",
+      "nx" : "no-execute bit (NX)",
+      "x86-64" : "64bits extensions (x86-64)",
+      "constant_tsc" : true,
+      "rep_good" : true,
+      "nopl" : true,
+      "cpuid" : true,
+      "tsc_known_freq" : true,
+      "pni" : true,
+      "pclmulqdq" : true,
+      "ssse3" : true,
+      "fma" : true,
+      "cx16" : true,
+      "pcid" : true,
+      "sse4_1" : true,
+      "sse4_2" : true,
+      "x2apic" : true,
+      "movbe" : true,
+      "popcnt" : true,
+      "tsc_deadline_timer" : true,
+      "aes" : true,
+      "xsave" : true,
+      "avx" : true,
+      "f16c" : true,
+      "rdrand" : true,
+      "hypervisor" : true,
+      "lahf_lm" : true,
+      "abm" : true,
+      "3dnowprefetch" : true,
+      "pti" : true,
+      "bmi1" : true,
+      "avx2" : true,
+      "bmi2" : true,
+      "rdseed" : true,
+      "adx" : true,
+      "xsaveopt" : true
+    }
+  }
+]
+
+",
+
+"netinfo":"[
+  {
+    "id" : "network",
+    "class" : "network",
+    "claimed" : true,
+    "handle" : "PCI:0000:00:03.0",
+    "description" : "Ethernet controller",
+    "product" : "Virtio network device",
+    "vendor" : "Red Hat, Inc.",
+    "physid" : "3",
+    "businfo" : "pci@0000:00:03.0",
+    "version" : "00",
+    "width" : 32,
+    "clock" : 33000000,
+    "configuration" : {
+      "driver" : "virtio-pci",
+      "latency" : "0"
+    },
+    "capabilities" : {
+      "msix" : "MSI-X",
+      "bus_master" : "bus mastering",
+      "cap_list" : "PCI capabilities listing",
+      "rom" : "extension ROM"
+    }
+  },
+      {
+        "id" : "virtio0",
+        "class" : "network",
+        "claimed" : true,
+        "description" : "Ethernet interface",
+        "physid" : "0",
+        "businfo" : "virtio@0",
+        "logicalname" : "eth0",
+        "serial" : "52:54:00:32:0a:6e",
+        "configuration" : {
+          "autonegotiation" : "off",
+          "broadcast" : "yes",
+          "driver" : "virtio_net",
+          "driverversion" : "1.0.0",
+          "ip" : "172.17.0.11",
+          "link" : "yes",
+          "multicast" : "yes"
+        },
+        "capabilities" : {
+          "ethernet" : true,
+          "physical" : "Physical interface"
+        }
+      }
+]
+
+",
+
+"meminfo":"[
+  {
+    "id" : "firmware",
+    "class" : "memory",
+    "claimed" : true,
+    "description" : "BIOS",
+    "vendor" : "Bochs",
+    "physid" : "0",
+    "version" : "Bochs",
+    "date" : "01/01/2011",
+    "units" : "bytes",
+    "size" : 98304
+  },
+  {
+    "id" : "memory",
+    "class" : "memory",
+    "claimed" : true,
+    "handle" : "DMI:1000",
+    "description" : "System Memory",
+    "physid" : "1000",
+    "units" : "bytes",
+    "size" : 2147483648,
+    "capacity" : 2147483648,
+    "configuration" : {
+      "errordetection" : "multi-bit-ecc"
+    },
+    "capabilities" : {
+      "ecc" : "Multi-bit error-correcting code (ECC)"
+    }
+  },
+      {
+        "id" : "bank",
+        "class" : "memory",
+        "claimed" : true,
+        "handle" : "DMI:1100",
+        "description" : "DIMM RAM",
+        "physid" : "0",
+        "slot" : "DIMM 0",
+        "units" : "bytes",
+        "size" : 2147483648,
+        "width" : 64
+      }
+]
+
+",
+
+"diskinfo":"[
+  {
+    "id" : "cdrom",
+    "class" : "disk",
+    "claimed" : true,
+    "handle" : "SCSI:00:00:01:00",
+    "description" : "DVD reader",
+    "product" : "QEMU DVD-ROM",
+    "vendor" : "QEMU",
+    "physid" : "0.1.0",
+    "businfo" : "scsi@0:0.1.0",
+    "logicalname" : ["/dev/cdrom", "/dev/dvd", "/dev/sr0"],
+    "dev" : "11:0",
+    "version" : "1.2.",
+    "configuration" : {
+      "ansiversion" : "5",
+      "status" : "ready"
+    },
+    "capabilities" : {
+      "removable" : "support is removable",
+      "audio" : "Audio CD playback",
+      "dvd" : "DVD playback"
+    }
+  },
+      {
+        "id" : "medium",
+        "class" : "disk",
+        "claimed" : true,
+        "physid" : "0",
+        "logicalname" : "/dev/cdrom",
+        "dev" : "11:0"
+      },
+  {
+    "id" : "virtio1",
+    "class" : "disk",
+    "claimed" : true,
+    "description" : "Virtual I/O device",
+    "physid" : "0",
+    "businfo" : "virtio@1",
+    "logicalname" : "/dev/vda",
+    "units" : "bytes",
+    "size" : 53687091200,
+    "configuration" : {
+      "driver" : "virtio_blk",
+      "logicalsectorsize" : "512",
+      "sectorsize" : "512",
+      "signature" : "3fa1d255"
+    },
+    "capabilities" : {
+      "partitioned" : "Partitioned disk",
+      "partitioned:dos" : "MS-DOS partition table"
+    }
+  }
+]
+
+",
+
+"biosinfo":"[
+  {
+    "id" : "firmware",
+    "class" : "memory",
+    "claimed" : true,
+    "description" : "BIOS",
+    "vendor" : "Bochs",
+    "physid" : "0",
+    "version" : "Bochs",
+    "date" : "01/01/2011",
+    "units" : "bytes",
+    "size" : 98304
+  },
+  {
+    "id" : "memory",
+    "class" : "memory",
+    "claimed" : true,
+    "handle" : "DMI:1000",
+    "description" : "System Memory",
+    "physid" : "1000",
+    "units" : "bytes",
+    "size" : 2147483648,
+    "capacity" : 2147483648,
+    "configuration" : {
+      "errordetection" : "multi-bit-ecc"
+    },
+    "capabilities" : {
+      "ecc" : "Multi-bit error-correcting code (ECC)"
+    }
+  },
+      {
+        "id" : "bank",
+        "class" : "memory",
+        "claimed" : true,
+        "handle" : "DMI:1100",
+        "description" : "DIMM RAM",
+        "physid" : "0",
+        "slot" : "DIMM 0",
+        "units" : "bytes",
+        "size" : 2147483648,
+        "width" : 64
+      }
+]
+
+",
+
+"ipinfo1":"[
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+]",
+
+"ipinfo2":"[
+# This file is generated from information provided by
+# the datasource.  Changes to it will not persist across an instance.
+# To disable cloud-init's network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    version: 2
+    ethernets:
+        eth0:
+            dhcp4: true
+            match:
+                macaddress: 52:54:00:32:0a:6e
+            set-name: eth0
+]",
+
+"ipinfo_num":"[2]"
+
+}

@@ -1,0 +1,3 @@
+[
+{"total_ram":1922564096,"free_ram":114262016,"shared_ram":8552448,"buffer_ram":192405504,"total_swap":0,"free_swap":0,"other_info":""}
+]

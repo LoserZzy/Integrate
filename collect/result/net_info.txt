@@ -1,0 +1,4 @@
+[
+{"host_name":"VM-0-11-ubuntu","net_name":"lo","mac_addr":"00:00:00:00:00:00","ip_addr":"127.0.0.1","broad_addr":"0.0.0.0","subnet_mask":"255.0.0.0","physid":"","description":"","product":"","vendor":"","serial":"","other_info":""},
+{"host_name":"VM-0-11-ubuntu","net_name":"eth0","mac_addr":"52:54:00:32:0a:6e","ip_addr":"172.17.0.11","broad_addr":"172.17.15.255","subnet_mask":"255.255.240.0","physid":"","description":"","product":"","vendor":"","serial":"","other_info":""}
+]

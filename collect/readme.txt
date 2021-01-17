@@ -1,4 +1,0 @@
-这些代码包含了学姐写的采集代码和我后来添加的采集代码，我添加的代码为get_additional_hwinfo.c和get_additional_hwinfo.h
-主函数在collect里面，将main函数改成想要的名称就能调用了
-可能用到的设置放在settings.h里面
-get_additional_hwinfo.c中lshw涉及到兼容多种架构的部分，由于缺少编译好的可执行文件，所以还留了几个空，之后需要补上
